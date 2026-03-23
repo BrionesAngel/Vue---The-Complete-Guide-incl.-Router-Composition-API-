@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -9,7 +9,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles.css" />
-    <script src="https://unpkg.com/vue@3.4.9/dist/vue.global.js"></script> 
+    <script src="https://unpkg.com/vue@3.4.9/dist/vue.global.js"></script>
     <script src="app.js" defer></script>
   </head>
   <body>
@@ -18,9 +18,25 @@
     </header>
     <section id="events">
       <h2>Events in Action</h2>
-      <button v-on:click="counter++">Add</button>
-      <button v-on:click="counter--">Reduce</button>
+      <button v-on:click="add(2)">Add 2</button>
+      <button v-on:click.right="reduce">Reduce</button>
+
+      <p v-once>Starting Counter: {{ counter }}</p>
       <p>Result: {{ counter }}</p>
+
+      <input type="text" v-on:input="setName" v-on:keyup.enter="confirmInput"/>
+      <p>Your Name: {{confirmedName}}</p>
+
+      <input
+        type="text"
+        v-on:input="setName_and_lastName($event, 'lastName')" 
+      />
+      <p>Your Name, lastName included: {{nameWithLastname}}</p>
+
+      <form v-on:submit.prevent="submitForm">
+        <input type="text" />
+        <button>Sign in</button>
+      </form>
     </section>
   </body>
 </html>
